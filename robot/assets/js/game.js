@@ -7,17 +7,10 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function (enemyName) {
+var fight = function (enemy) {
   // repeat and execute as long as the enemy-robot is alive
-  while (enemyHealth > 50) {
-    for (var i = 0; i < enemyNames.length; i++) {
-      var pickedEnemyName = enemyNames[i];
-      enemyHealth = 50;
-      fight(pickedEnemyName);
-    }
-    console.log(enemyNames[i]);
-    console.log(i);
-    console.log(enemyNames[i] + " is at " + i + " index");
+  while (enemyHealth > 0) {
+    //place fight function code block here
 
     var promptFight = window.prompt(
       "Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose."
@@ -29,9 +22,9 @@ var fight = function (enemyName) {
       console.log(
         playerName +
           " attacked " +
-          enemyNames +
+          enemy +
           ". " +
-          enemyNames +
+          enemy +
           " now has " +
           enemyHealth +
           " health remaining."
@@ -39,17 +32,15 @@ var fight = function (enemyName) {
 
       // check enemy's health
       if (enemyHealth <= 0) {
-        window.alert(enemyName + " has died!");
+        window.alert(enemy + " has died!");
       } else {
-        window.alert(
-          enemyNames + " still has " + enemyHealth + " health left."
-        );
+        window.alert(enemy + " still has " + enemyHealth + " health left.");
       }
 
       // remove player's health by subtracting the amount set in the enemyAttack variable
       playerHealth = playerHealth - enemyAttack;
       console.log(
-        enemyNames +
+        enemy +
           " attacked " +
           playerName +
           ". " +
@@ -90,26 +81,22 @@ var fight = function (enemyName) {
     console.log(
       playerName +
         " attacked " +
-        enemyNames +
+        enemy +
         ". " +
-        enemyNames +
+        enemy +
         " now has " +
         enemyHealth +
         " health remaining."
     );
 
     // check enemy's health
-    if (enemyHealth <= 0) {
-      window.alert(enemyNames + " has died!");
-    } else {
-      window.alert(enemyNames + " still has " + enemyHealth + " health left.");
-    }
+
     // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable
     playerHealth = playerHealth - enemyAttack;
 
     // Log a resulting message to the console so we know that it worked.
     console.log(
-      enemyNames +
+      enemy +
         " attacked " +
         playerName +
         ". " +
@@ -118,15 +105,16 @@ var fight = function (enemyName) {
         playerHealth +
         " health remaining."
     );
-    if (playerHealth <= 0) {
-      window.alert(playerName + " has died!");
-    } else {
-      window.alert(playerName + " still has " + playerHealth + " health left.");
-    }
-    //place fight function code block here
   }
 };
-
 for (var i = 0; i < enemyNames.length; i++) {
-  fight(enemyNames[i]);
+  var pickedEnemyName = enemyNames[i];
+  enemyHealth = 50;
+  fight(pickedEnemyName);
 }
+console.log(enemyNames[i]);
+console.log(i);
+console.log(enemyNames[i] + " is at " + i + " index");
+//for (var i = 0; i < enemyNames.length; i++) {
+//fight(enemyNames[i]);
+//}
