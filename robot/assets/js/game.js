@@ -9,7 +9,7 @@ var enemyAttack = 12;
 
 var fight = function (enemy) {
   // repeat and execute as long as the enemy-robot is alive
-  while (enemyHealth > 0) {
+  while (playerHealth > 0 && enemyHealth > 0) {
     //place fight function code block here
 
     var promptFight = window.prompt(
@@ -33,6 +33,7 @@ var fight = function (enemy) {
       // check enemy's health
       if (enemyHealth <= 0) {
         window.alert(enemy + " has died!");
+        break;
       } else {
         window.alert(enemy + " still has " + enemyHealth + " health left.");
       }
@@ -53,6 +54,7 @@ var fight = function (enemy) {
       // check player's health
       if (playerHealth <= 0) {
         window.alert(playerName + " has died!");
+        break;
       } else {
         window.alert(
           playerName + " still has " + playerHealth + " health left."
@@ -67,7 +69,9 @@ var fight = function (enemy) {
       if (confirmSkip) {
         window.alert(playerName + " has decided to skip this fight. Goodbye!");
         // subtract money from playerMoney for skipping
-        playerMoney = playerMoney - 2;
+        playerMoney = playerMoney - 10;
+        console.log("playerMoney", playerMoney);
+        break;
       }
       // if no (false), ask question again by running fight() again
       else {
