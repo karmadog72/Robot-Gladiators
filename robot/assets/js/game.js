@@ -43,10 +43,11 @@ var fight = function (enemyName) {
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-// generate random damage value based on player's attack power
-var damage = randomNumber(playerAttack - 3, playerAttack);
+    // generate random damage value based on player's attack power
+    var damage = randomNumber(playerAttack - 3, playerAttack);
 
-enemyHealth = Math.max(0, enemyHealth - damage);    console.log(
+    enemyHealth = Math.max(0, enemyHealth - damage);
+    console.log(
       playerName +
         " attacked " +
         enemyName +
@@ -73,7 +74,7 @@ enemyHealth = Math.max(0, enemyHealth - damage);    console.log(
     // remove players's health by subtracting the amount set in the enemyAttack variable
     var damage = randomNumber(enemyAttack - 3, enemyAttack);
 
-playerHealth = Math.max(0, playerHealth - damage);
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName +
         " attacked " +
@@ -111,35 +112,33 @@ var startGame = function () {
       // pick new enemy to fight based on the index of the enemyNames array
       var pickedEnemyName = enemyNames[i];
 
-      // reset enemyHealth before starting new fight
+      // set health for picked enemy
       enemyHealth = randomNumber(40, 60);
 
-        return value;
-      };
-
-      // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
+      // pass the pickedEnemyObj object variable's value into the fight function, where it will assume the value of the enemy parameter
       fight(pickedEnemyName);
 
       // if player is still alive and we're not at the last enemy in the array
       if (playerHealth > 0 && i < enemyNames.length - 1) {
-        //ask if player wants to use store before next round
+        // ask if player wants to use the store before next round
         var storeConfirm = window.confirm(
           "The fight is over, visit the store before the next round?"
         );
-        //if yes, take them to the store()function
+
+        // if yes, take them to the store() function
         if (storeConfirm) {
           shop();
         }
       }
     }
-    // if player isn't alive, stop the game // if player is not alive, break out of the loop and let endGame function run
+    // if player is not alive, break out of the loop and let endGame function run
     else {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
     }
   }
-  //play again
-  //startGame();
+
+  // after loop ends, we are either out of player.health or enemies to fight, so run the endGame function
   endGame();
 };
 
